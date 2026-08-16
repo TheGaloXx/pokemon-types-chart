@@ -77,6 +77,7 @@ const state = {
 };
 
 const gridEl = document.getElementById("grid");
+const gridScale = document.getElementById("grid-scale");
 const gridWrap = document.querySelector(".grid-wrap");
 const modal = document.getElementById("modal");
 const mAtk = document.getElementById("m-atk");
@@ -110,7 +111,11 @@ function fitGrid() {
     const floor = scale < MIN_SCALE;
     if (floor) scale = MIN_SCALE;
     gridEl.style.transform = "scale(" + scale + ")";
-    gridWrap.style.height = Math.ceil(NAT_H * scale) + "px";
+    const w = Math.ceil(NAT_W * scale);
+    const h = Math.ceil(NAT_H * scale);
+    gridScale.style.width = w + "px";
+    gridScale.style.height = h + "px";
+    gridWrap.style.height = (h + 2) + "px";
     gridWrap.style.overflow = floor ? "auto" : "hidden";
 }
 

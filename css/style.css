@@ -83,6 +83,7 @@ body{
     background:var(--panel);
     box-shadow:0 8px 24px rgba(41,58,79,.15);
 }
+.grid-scale{ overflow:hidden; }
 .grid{
     display:grid;
     grid-template-columns:104px repeat(18, 64px);
