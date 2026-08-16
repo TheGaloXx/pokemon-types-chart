@@ -88,7 +88,6 @@ const gridImg = document.getElementById("grid-img");
 
 const NAT_W = 104 + N * 64;
 const NAT_H = (N + 1) * 40;
-const MIN_SCALE = 0.55;
 
 const cells = [];
 
@@ -107,16 +106,13 @@ function fitGrid() {
     const availW = gridWrap.clientWidth;
     const top = gridWrap.getBoundingClientRect().top;
     const availH = window.innerHeight - top - 14;
-    let scale = Math.min(availW / NAT_W, availH / NAT_H);
-    const floor = scale < MIN_SCALE;
-    if (floor) scale = MIN_SCALE;
+    const scale = Math.min(Math.min(availW / NAT_W, availH / NAT_H), 1);
     gridEl.style.transform = "scale(" + scale + ")";
     const w = Math.ceil(NAT_W * scale);
     const h = Math.ceil(NAT_H * scale);
     gridScale.style.width = w + "px";
     gridScale.style.height = h + "px";
     gridWrap.style.height = (h + 2) + "px";
-    gridWrap.style.overflow = floor ? "auto" : "hidden";
 }
 
 for (let r = 0; r <= N; r++) {
